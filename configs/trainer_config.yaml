@@ -1,0 +1,22 @@
+model:
+    name: "models/bert-base-chinese"
+    num_labels: 10
+
+dataset:
+    file_path: "./dataset/tagged_data_clean.csv"
+    validation_ratio: 0.2
+    max_length: 128
+
+training:
+    output_dir: "./model_for_classification"
+    num_train_epochs: 3
+    per_device_train_batch_size: 8
+    per_device_eval_batch_size: 8
+    warmup_ratio: 0.1
+    logging_dir: "./logs"
+    logging_steps: 10
+    save_strategy: "epoch"
+    learning_rate: 3e-5
+    optim: "adamw_hf"
+    eval_steps: 10
+    eval_strategy: "steps"

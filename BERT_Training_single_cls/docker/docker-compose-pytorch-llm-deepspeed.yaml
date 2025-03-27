@@ -1,0 +1,19 @@
+services:
+  pytorch-llm-deepspeed:
+    image: cuda121-pytorch-py311:latest
+    container_name: cuda121-pytorch-py311-deepspeed
+    command: tail -f /dev/null
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home/max.dh.kuo:/usr/src/app
+    working_dir: /usr/src/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    restart: unless-stopped
+    shm_size: "4g"
